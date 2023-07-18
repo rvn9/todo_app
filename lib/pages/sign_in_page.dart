@@ -40,9 +40,12 @@ class _SignInPageState extends State<SignInPage> {
 
   @override
   void dispose() {
+    _emailController.clear();
+    _passwordController.clear();
     _authenticationCubit.close();
     _emailController.dispose();
     _passwordController.dispose();
+
     super.dispose();
   }
 

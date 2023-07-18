@@ -25,11 +25,11 @@ class AuthenticationRepository {
     }
   }
 
-  Future<Either<Exception, void>> signOut() async {
+  Future<Either<Exception, bool>> signOut() async {
     try {
-      final response = await _authService.signOut();
+      await _authService.signOut();
       _secureStorge.clearUid();
-      return Right(response);
+      return const Right(true);
     } catch (e) {
       return Left(Exception(e));
     }

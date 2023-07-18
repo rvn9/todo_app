@@ -1,7 +1,9 @@
 import 'dart:io';
 
 import 'package:get_it/get_it.dart';
+import 'package:todo_app/data/remote/task_service.dart';
 import 'package:todo_app/repositories/authentication_repository.dart';
+import 'package:todo_app/repositories/task_repository.dart';
 
 import 'data/local/secure_storage.dart';
 import 'data/remote/auth_service.dart';
@@ -19,11 +21,13 @@ class Injector {
 
   void _initializeService() {
     getIt.registerLazySingleton<AuthService>(() => AuthService());
+    getIt.registerLazySingleton<TaskService>(() => TaskService.create());
     getIt.registerLazySingleton<SecureStorge>(() => SecureStorge.create());
   }
 
   void _initializeRepository() {
     getIt.registerLazySingleton<AuthenticationRepository>(
         () => AuthenticationRepository.create());
+    getIt.registerLazySingleton<TaskRepository>(() => TaskRepository.create());
   }
 }
